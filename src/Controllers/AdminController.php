@@ -7,22 +7,22 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController
 {
-    protected $model;
-    protected $route;
+    public $model;
+    public $route;
 
-    protected $limit = 25;
-    protected $columns = [];
-    protected $form = [];
-    protected $actions = ['V', 'E', 'D'];
+    public $limit = 25;
+    public $columns = [];
+    public $form = [];
+    public $actions = ['V', 'E', 'D'];
 
     private $translatableContract = 'TranslatableContract';
 
-    protected function __construct()
+    public function __construct()
     {
         $this->locales = [];
     }
 
-    protected function index(Request $request)
+    public function index(Request $request)
     {
         $reflection = new \ReflectionClass($this->model);
         $model = $reflection->newInstance();
@@ -58,7 +58,7 @@ class AdminController
         return view('default.index', $data);
     }
 
-    protected function create(Request $request)
+    public function create(Request $request)
     {
         $reflection = new \ReflectionClass($this->model);
         $model = $reflection->newInstance();
@@ -83,7 +83,7 @@ class AdminController
         return view('default.edit', $data);
     }
 
-    protected function edit($id, Request $request)
+    public function edit($id, Request $request)
     {
         $reflection = new \ReflectionClass($this->model);
         $model = $reflection->newInstance();
@@ -118,7 +118,7 @@ class AdminController
         return view('default.edit', $data);
     }
 
-    protected function store(Request $request)
+    public function store(Request $request)
     {
         $reflection = new \ReflectionClass($this->model);
         $model = $reflection->newInstance();
@@ -140,7 +140,7 @@ class AdminController
         return redirect($this->route)->with('success', trans('general.successfully_created', ['model' => ucfirst($singularName)]));
     }
 
-    protected function update($id, Request $request)
+    public function update($id, Request $request)
     {
         $reflection = new \ReflectionClass($this->model);
         $model = $reflection->newInstance()::find($id);
@@ -176,7 +176,7 @@ class AdminController
         return redirect($this->route)->with('success', trans('general.successfully_updated', ['model' => ucfirst($singularName)]));
     }
 
-    protected function validation($model, Request $request)
+    public function validation($model, Request $request)
     {
         $array_rules = [];
 
@@ -195,7 +195,7 @@ class AdminController
         return Validator::make($request->all(), $array_rules);
     }
 
-    protected function fillData($model, Request $request)
+    public function fillData($model, Request $request)
     {
         $fill_data = [];
 
