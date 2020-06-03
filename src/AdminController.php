@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace WerdenIt\EntityAdmin\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
